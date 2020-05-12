@@ -1,4 +1,5 @@
-from .serializers import UserSerializer
+from .models import Pet, Product
+from .serializers import UserSerializer, PetSerializer, ProductSerializer
 from rest_auth.views import LoginView, APIView
 from rest_framework import generics
 from django.contrib.auth.models import User
@@ -17,3 +18,27 @@ class ULoginView(LoginView):
 class UserCreate(generics.CreateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+
+class PetList(generics.ListCreateAPIView):
+    serializer_class = PetSerializer
+    queryset = Pet.objects.all()
+
+
+class ProductList(generics.ListCreateAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        cat = self.request.GET.get('c', None)
+        animal = self.request.GET.get('a', None)
+
+        params = {'category': cat, 'animal': animal}
+        filters = {k: v for k, v in params.items() if v is not None}
+
+        if not cat and not animal:
+            query = Product.objects.all()
+        else:
+            query = Product.objects.filter(**filters)
+
+        return query
