@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import BaseRouter from '../routes';
 import { HashRouter as Router } from 'react-router-dom';
 import { connect } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component{
 

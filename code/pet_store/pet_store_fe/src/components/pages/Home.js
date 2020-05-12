@@ -2,19 +2,21 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-//import MainLayout from '../blocks/layouts/MainLayout';
+import MainLayout from '../blocks/layouts/MainLayout';
 
 
 export class Home extends Component {
 
     render() {
-//        if (!this.props.isAuthenticated) {
-//            return <Redirect to="/login" />;
-//        }
+        if (!this.props.isAuthenticated) {
+            return <Redirect to="/login" />;
+        }
 
         return (
             <>
-                <h1>PETT</h1>
+                <MainLayout {...this.props}>
+                    <h1>PETT</h1>
+                </MainLayout>
             </>
         );
 
@@ -22,7 +24,7 @@ export class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-//    isAuthenticated: state.auth.token != null,
+    isAuthenticated: state.auth.token != null,
 });
 
 function mapDispatchToProps(dispatch) {

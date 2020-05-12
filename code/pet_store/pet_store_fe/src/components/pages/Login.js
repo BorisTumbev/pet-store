@@ -2,21 +2,45 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
+import { authLogin } from "../../actions/auth";
 
+import {
+    Form,
+    FormControl,
+    Button
+} from 'react-bootstrap';
 
 export class Login extends Component {
-
+    login = (e) => {
+        e.preventDefault();
+        let form = e.target
+        console.log('login hit')
+        console.log(form.elements.username.value)
+        console.log(form.elements.pass.value)
+        this.props.login(form.elements.username.value, form.elements.pass.value);
+    };
 
     render() {
-//        if (this.props.isAuthenticated) {
-//            return <Redirect to="/" />;
-//        }
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />;
+        }
 
         return (
-            <div>
-                Login
-            </div>
+            <>
+                <Form onSubmit={this.login} className='login-form'>
+                  <Form.Group controlId="username">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control required placeholder="Enter username" />
+                  </Form.Group>
+                  <Form.Group controlId="pass">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control required type="password" placeholder="Password" />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </Form>
+            </>
         );
 
     }
@@ -24,12 +48,12 @@ export class Login extends Component {
 
 
 const mapStateToProps = state => ({
-//    isAuthenticated: state.auth.token != null
+    isAuthenticated: state.auth.token != null
 });
 
 function mapDispatchToProps(dispatch) {
     return {
-//        login: (email, password) => dispatch(login(email, password)),
+        login: (email, password) => dispatch(authLogin(email, password)),
   };
 }
 
