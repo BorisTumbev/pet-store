@@ -14,7 +14,9 @@ export class Login extends Component {
 //        }
 
         return (
-            Login
+            <div>
+                Login
+            </div>
         );
 
     }

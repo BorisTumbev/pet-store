@@ -131,3 +131,5 @@ dmypy.json
 node_modules
 .vagrant
 .idea
+
+code/pet_store/pet_store_api/migrations/*
