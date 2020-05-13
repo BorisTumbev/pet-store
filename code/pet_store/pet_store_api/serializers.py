@@ -9,6 +9,16 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'password', 'is_superuser', 'username')
 
+    def create(self, validated_data):
+        username = validated_data.pop('username')
+        password = validated_data.pop('password')
+
+        user_obj = User(username=username)
+        user_obj.set_password(password)
+        user_obj.save()
+
+        return user_obj
+
 
 class PetSerializer(serializers.ModelSerializer):
     class Meta:

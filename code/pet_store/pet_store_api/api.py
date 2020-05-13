@@ -1,7 +1,7 @@
 from .models import Pet, Product
 from .serializers import UserSerializer, PetSerializer, ProductSerializer
 from rest_auth.views import LoginView, APIView
-from rest_framework import generics
+from rest_framework import generics, permissions
 from django.contrib.auth.models import User
 
 
@@ -42,3 +42,11 @@ class ProductList(generics.ListCreateAPIView):
             query = Product.objects.filter(**filters)
 
         return query
+
+
+class UserView(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = UserSerializer
+
+    def get_object(self):
+        return self.request.user

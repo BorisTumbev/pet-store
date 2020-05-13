@@ -93,3 +93,34 @@ export const authCheckState = (user) => {
         }
     }
 }
+
+export const getUser = () => {
+    const config = {
+        headers: {
+            "Authorization": "Token " + localStorage.getItem('token')
+        }
+    };
+    return dispatch => {
+        axios.get('/api/user', config)
+        .then(res =>{
+            dispatch(authCheckState(res.data))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}
+
+
+export const register = (credentials) => {
+
+    return dispatch => {
+        axios.post('/api/register', credentials)
+        .then(res =>{
+//            dispatch(authCheckState(res.data))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+}

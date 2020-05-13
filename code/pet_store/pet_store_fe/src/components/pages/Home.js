@@ -8,9 +8,9 @@ import MainLayout from '../blocks/layouts/MainLayout';
 export class Home extends Component {
 
     render() {
-        if (!this.props.isAuthenticated) {
-            return <Redirect to="/login" />;
-        }
+//        if (!this.props.isAuthenticated) {
+//            return <Redirect to="/login" />;
+//        }
 
         return (
             <>

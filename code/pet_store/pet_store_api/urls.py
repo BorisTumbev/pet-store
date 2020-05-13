@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_auth.views import LogoutView
-from .api import ULoginView, UserCreate, PetList, ProductList
+from .api import ULoginView, UserCreate, PetList, ProductList, UserView
 
 urlpatterns = [
     path('api/login', ULoginView.as_view()),
@@ -9,4 +9,6 @@ urlpatterns = [
 
     path('api/pets', PetList.as_view()),
     path('api/products', ProductList.as_view()),
+
+    path('api/user', UserView.as_view()),
 ]

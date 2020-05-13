@@ -29,11 +29,15 @@ export class MainLayout extends Component {
     };
 
     render() {
+        var username = ''
+        if(this.props.user !== null){
+            username = this.props.user.username
+        }
 
         return (
             <>
                 <Navbar bg="light" expand="lg">
-                  <Navbar.Brand href="#home">Pet Store</Navbar.Brand>
+                  <Navbar.Brand href="#">Pet Store</Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
@@ -41,13 +45,21 @@ export class MainLayout extends Component {
                       <Nav.Link href="#shop">Shop</Nav.Link>
                     </Nav>
                     <Nav>
+                    {!this.props.isAuthenticated &&
+                      <>
                       <Nav.Link href="#login">Login</Nav.Link>
                       <Nav.Link href="#register">Sign up</Nav.Link>
+                      </>
+                    }
+                    {this.props.isAuthenticated &&
                       <Nav.Link onClick={this.logout}>Logout</Nav.Link>
+                    }
                     </Nav>
-                    <Navbar.Text>
-                      Signed in as: Mark Otto
-                    </Navbar.Text>
+                    {this.props.isAuthenticated &&
+                        <Navbar.Text>
+                          Signed in as: {username}
+                        </Navbar.Text>
+                    }
                   </Navbar.Collapse>
                 </Navbar>
                 {this.props.children}
@@ -57,7 +69,8 @@ export class MainLayout extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.auth.user
+    user: state.auth.user,
+    isAuthenticated: state.auth.token != null,
 });
 
 function mapDispatchToProps(dispatch) {

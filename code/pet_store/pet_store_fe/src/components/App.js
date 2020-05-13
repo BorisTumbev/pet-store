@@ -4,11 +4,14 @@ import BaseRouter from '../routes';
 import { HashRouter as Router } from 'react-router-dom';
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { getUser } from '../actions/auth'
 
 
 class App extends Component{
 
     componentDidMount(){
+        this.props.getUser();
+
 //        this.props.authCheckState();
     }
 
@@ -25,7 +28,7 @@ class App extends Component{
 
 function mapDispatchToProps(dispatch) {
     return {
-//        authCheckState: () => dispatch(authCheckState()),
+        getUser: () => dispatch(getUser()),
   };
 }
 
