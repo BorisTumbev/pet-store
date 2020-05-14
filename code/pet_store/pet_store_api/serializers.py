@@ -21,12 +21,21 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class PetSerializer(serializers.ModelSerializer):
+    picture_url = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Pet
-        fields = ('id', 'breed', 'picture', 'description')
+        fields = ('id', 'breed', 'picture', 'description', 'picture_url')
 
+    def get_picture_url(self, obj):
+        return obj.picture.url.replace('pet_store_fe/', '')
 
 class ProductSerializer(serializers.ModelSerializer):
+    picture_url = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Product
-        fields = ('id', 'animal', 'price', 'category', 'picture', 'size', 'color', 'description')
+        fields = ('id', 'animal', 'price', 'category', 'picture', 'size', 'color', 'description', 'picture_url')
+
+    def get_picture_url(self, obj):
+        return obj.picture.url.replace('pet_store_fe/', '')
