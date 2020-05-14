@@ -7,6 +7,8 @@ import { getProducts } from "../../actions/shop";
 import {
     CardDeck,
     Card,
+    Form,
+    Button
 } from 'react-bootstrap';
 
 export class Shop extends Component {
@@ -31,6 +33,16 @@ export class Shop extends Component {
         })
     }
 
+    searchShop = (e) => {
+        e.preventDefault();
+        let form = e.target
+        console.log('search hit')
+        console.log(form.elements.animal.value)
+        console.log(form.elements.category.value)
+        this.props.getProducts(form.elements.animal.value, form.elements.category.value);
+    };
+
+
     render() {
 //        if (!this.props.isAuthenticated) {
 //            return <Redirect to="/login" />;
@@ -39,6 +51,25 @@ export class Shop extends Component {
         return (
             <>
                 <MainLayout {...this.props}>
+                    <div className='shop-filters'>
+                    <Form onSubmit={this.searchShop}>
+                      <Form.Group controlId="animal">
+                        <Form.Label>Animal</Form.Label>
+                        <Form.Control as="select" custom>
+                          <option value='cat'>Cat</option>
+                          <option value='dog'>Dog</option>
+                        </Form.Control>
+                       </Form.Group>
+                       <Form.Group controlId="category">
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control as="select" custom>
+                          <option value='cl'>Clothing</option>
+                          <option value='acc'>Accessories</option>
+                        </Form.Control>
+                      </Form.Group>
+                      <Button type="submit">Search</Button>
+                    </Form>
+                    </div>
                     <div className='pet-cards'>
                         {this.renderProducts()}
                     </div>
@@ -56,7 +87,7 @@ const mapStateToProps = state => ({
 
 function mapDispatchToProps(dispatch) {
     return {
-        getProducts: () => dispatch(getProducts()),
+        getProducts: (animal, category) => dispatch(getProducts(animal, category)),
   };
 }
 

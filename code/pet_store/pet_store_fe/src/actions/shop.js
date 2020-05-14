@@ -4,10 +4,17 @@ GET_PRODUCTS, GET_PRODUCT, ADD_TO_CART
 import axios from 'axios';
 
 
-export const getProducts = () => {
+export const getProducts = (animal=null, category=null) => {
+    var url;
+    if(animal !== null && category !== null){
+        url = `/api/products?a=${animal}&c=${category}`
+    }
+    else{
+        url = '/api/products'
+    }
 
     return dispatch => {
-        axios.get('/api/products')
+        axios.get(url)
         .then(res =>{
             dispatch({
                 type: GET_PRODUCTS,

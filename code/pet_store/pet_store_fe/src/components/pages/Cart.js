@@ -15,6 +15,7 @@ export class Cart extends Component {
     }
 
     renderCartProducts(){
+        let that = this;
         return this.props.cart.map(function (e, index){
             return(
                 <tr key={index}>
@@ -23,9 +24,15 @@ export class Cart extends Component {
                   <td>{e.size}</td>
                   <td>{e.color}</td>
                   <td>{e.price}</td>
+                  <td><Button onClick={() => that.rmFromCart(e.id)} variant="danger">remove</Button></td>
                 </tr>
             )
         })
+    }
+
+    rmFromCart(id){
+        console.log('delete')
+        console.log(id)
     }
 
     render() {
@@ -48,6 +55,7 @@ export class Cart extends Component {
                           <th>Size</th>
                           <th>Color</th>
                           <th>Price</th>
+                          <th> </th>
                         </tr>
                       </thead>
                       <tbody>
