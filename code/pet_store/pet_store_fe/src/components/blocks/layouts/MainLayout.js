@@ -43,6 +43,9 @@ export class MainLayout extends Component {
                     <Nav className="mr-auto">
                       <Nav.Link href="#pets">Pets</Nav.Link>
                       <Nav.Link href="#shop">Shop</Nav.Link>
+                      {this.props.isAuthenticated &&
+                        <Nav.Link href="#cart">Cart ({this.props.cart_products_num})</Nav.Link>
+                      }
                     </Nav>
                     <Nav>
                     {!this.props.isAuthenticated &&
@@ -71,6 +74,7 @@ export class MainLayout extends Component {
 const mapStateToProps = state => ({
     user: state.auth.user,
     isAuthenticated: state.auth.token != null,
+    cart_products_num: state.shop.cart.length,
 });
 
 function mapDispatchToProps(dispatch) {

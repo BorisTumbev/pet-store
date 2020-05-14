@@ -20,6 +20,7 @@ class Pet(models.Model):
 
 class Product(models.Model):
     animal = models.CharField(max_length=100, choices=ANIMAL_CHOICES)
+    name = models.CharField(max_length=100)
     price = models.IntegerField()
     category = models.CharField(max_length=100, choices=CAT_CHOICES)
     picture = models.ImageField(upload_to='pet_store_fe/static/images/products/',

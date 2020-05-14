@@ -3,28 +3,28 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import MainLayout from '../blocks/layouts/MainLayout';
-import { getPets } from "../../actions/pets";
+import { getProducts } from "../../actions/shop";
 import {
     CardDeck,
     Card,
 } from 'react-bootstrap';
 
-export class Pets extends Component {
+export class Shop extends Component {
 
     componentDidMount(){
-        this.props.getPets();
+        this.props.getProducts();
     }
 
-    renderPets(){
-        return this.props.pets.map(function (e, index){
+    renderProducts(){
+        return this.props.products.map(function (e, index){
             return(
                   <Card key={index} className='pet-card'>
                     <Card.Img variant="top" src={e.picture_url} />
                     <Card.Body>
-                      <Card.Title>{e.breed}</Card.Title>
-                      <Card.Text>
-                        {e.description}
-                      </Card.Text>
+                      <Card.Title>{e.name}</Card.Title>
+                    </Card.Body>
+                    <Card.Body>
+                      <Card.Link href={`#product/${e.id}`}>details</Card.Link>
                     </Card.Body>
                   </Card>
             )
@@ -40,7 +40,7 @@ export class Pets extends Component {
             <>
                 <MainLayout {...this.props}>
                     <div className='pet-cards'>
-                        {this.renderPets()}
+                        {this.renderProducts()}
                     </div>
                 </MainLayout>
             </>
@@ -51,13 +51,13 @@ export class Pets extends Component {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.token != null,
-    pets: state.pets.pets,
+    products: state.shop.products,
 });
 
 function mapDispatchToProps(dispatch) {
     return {
-        getPets: () => dispatch(getPets()),
+        getProducts: () => dispatch(getProducts()),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pets);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

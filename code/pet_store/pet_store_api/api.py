@@ -43,6 +43,10 @@ class ProductList(generics.ListCreateAPIView):
 
         return query
 
+class ProductDetails(generics.RetrieveAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
 
 class UserView(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
