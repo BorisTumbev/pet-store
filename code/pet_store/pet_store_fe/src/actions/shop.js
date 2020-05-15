@@ -1,5 +1,5 @@
 import {
-GET_PRODUCTS, GET_PRODUCT, ADD_TO_CART
+GET_PRODUCTS, GET_PRODUCT, ADD_TO_CART, RM_FROM_CART
 } from "./types";
 import axios from 'axios';
 
@@ -45,11 +45,19 @@ export const getProduct = (id) => {
 
 
 export const addToCart = (product) => {
-
     return dispatch => {
         dispatch({
             type: ADD_TO_CART,
             payload: product
+        });
+    }
+}
+
+export const rmFromCart = (id) => {
+    return dispatch => {
+        dispatch({
+            type: RM_FROM_CART,
+            payload: id
         });
     }
 }

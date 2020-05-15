@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { authLogin } from "../../actions/auth";
+import MainLayout from '../blocks/layouts/MainLayout';
 
 import {
     Form,
@@ -27,19 +28,21 @@ export class Login extends Component {
 
         return (
             <>
-                <Form onSubmit={this.login} className='login-form'>
-                  <Form.Group controlId="username">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control required placeholder="Enter username" />
-                  </Form.Group>
-                  <Form.Group controlId="pass">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control required type="password" placeholder="Password" />
-                  </Form.Group>
-                  <Button variant="primary" type="submit">
-                    Login
-                  </Button>
-                </Form>
+                <MainLayout {...this.props}>
+                    <Form onSubmit={this.login} className='login-form'>
+                      <Form.Group controlId="username">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control required placeholder="Enter username" />
+                      </Form.Group>
+                      <Form.Group controlId="pass">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control required type="password" placeholder="Password" />
+                      </Form.Group>
+                      <Button variant="primary" type="submit">
+                        Login
+                      </Button>
+                    </Form>
+                </MainLayout>
             </>
         );
 

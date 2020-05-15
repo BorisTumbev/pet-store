@@ -51,27 +51,29 @@ export class Shop extends Component {
         return (
             <>
                 <MainLayout {...this.props}>
-                    <div className='shop-filters'>
-                    <Form onSubmit={this.searchShop}>
-                      <Form.Group controlId="animal">
-                        <Form.Label>Animal</Form.Label>
-                        <Form.Control as="select" custom>
-                          <option value='cat'>Cat</option>
-                          <option value='dog'>Dog</option>
-                        </Form.Control>
-                       </Form.Group>
-                       <Form.Group controlId="category">
-                        <Form.Label>Category</Form.Label>
-                        <Form.Control as="select" custom>
-                          <option value='cl'>Clothing</option>
-                          <option value='acc'>Accessories</option>
-                        </Form.Control>
-                      </Form.Group>
-                      <Button type="submit">Search</Button>
-                    </Form>
-                    </div>
-                    <div className='pet-cards'>
-                        {this.renderProducts()}
+                    <div className="shop-main">
+                        <div className='shop-filters'>
+                        <Form onSubmit={this.searchShop}>
+                          <Form.Group controlId="animal">
+                            <Form.Label>Animal</Form.Label>
+                            <Form.Control as="select" custom>
+                              <option value='cat'>Cat</option>
+                              <option value='dog'>Dog</option>
+                            </Form.Control>
+                           </Form.Group>
+                           <Form.Group controlId="category">
+                            <Form.Label>Category</Form.Label>
+                            <Form.Control as="select" custom>
+                              <option value='cl'>Clothing</option>
+                              <option value='acc'>Accessories</option>
+                            </Form.Control>
+                          </Form.Group>
+                          <Button type="submit">Search</Button>
+                        </Form>
+                        </div>
+                        <div className='pet-cards'>
+                            {this.renderProducts()}
+                        </div>
                     </div>
                 </MainLayout>
             </>

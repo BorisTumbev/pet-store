@@ -8,6 +8,7 @@ import Pets from "./components/pages/Pets";
 import Shop from "./components/pages/Shop";
 import ProductDetails from "./components/pages/ProductDetails";
 import Cart from "./components/pages/Cart";
+import Contacts from "./components/pages/Contacts";
 
 
 const BaseRouter = () => (
@@ -20,6 +21,7 @@ const BaseRouter = () => (
             <Route exact path="/shop" component={Shop} />
             <Route exact path="/product/:id" component={ProductDetails} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/contacts" component={Contacts} />
             <Route component={Error404} />
         </Switch>
     </div>

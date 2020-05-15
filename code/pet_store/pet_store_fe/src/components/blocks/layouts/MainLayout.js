@@ -36,13 +36,14 @@ export class MainLayout extends Component {
 
         return (
             <>
-                <Navbar bg="light" expand="lg">
-                  <Navbar.Brand href="#">Pet Store</Navbar.Brand>
+                <Navbar bg="dark" expand="lg" >
+                  <Navbar.Brand href="#"><img src="/static/images/logo.png" className='logo'/></Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />
                   <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                       <Nav.Link href="#pets">Pets</Nav.Link>
                       <Nav.Link href="#shop">Shop</Nav.Link>
+                      <Nav.Link href="#contacts">Contacts</Nav.Link>
                       {this.props.isAuthenticated &&
                         <Nav.Link href="#cart">Cart ({this.props.cart_products_num})</Nav.Link>
                       }
@@ -66,6 +67,12 @@ export class MainLayout extends Component {
                   </Navbar.Collapse>
                 </Navbar>
                 {this.props.children}
+                <div className='footer fixed-bottom'>
+                    <div className='logos'>
+                    <a href='https://facebook.com' target='_blank'><span className='facebook-logo'/></a>
+                    <a href='https://instagram.com' target='_blank'><span className='instagram-logo'/></a>
+                    </div>
+                </div>
             </>
         );
     }

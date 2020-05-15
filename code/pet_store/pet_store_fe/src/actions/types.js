@@ -9,6 +9,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const GET_PRODUCT = 'GET_PRODUCT'
 
 export const ADD_TO_CART = 'ADD_TO_CART'
+export const RM_FROM_CART = 'RM_FROM_CART'
 
 
 

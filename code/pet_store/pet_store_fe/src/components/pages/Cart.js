@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import MainLayout from '../blocks/layouts/MainLayout';
-import { getProduct, addToCart } from "../../actions/shop";
+import { getProduct, addToCart, rmFromCart } from "../../actions/shop";
 import {
     Table,
     Button
@@ -24,6 +24,7 @@ export class Cart extends Component {
                   <td>{e.size}</td>
                   <td>{e.color}</td>
                   <td>{e.price}</td>
+                  <td>{e.quantity}</td>
                   <td><Button onClick={() => that.rmFromCart(e.id)} variant="danger">remove</Button></td>
                 </tr>
             )
@@ -33,6 +34,7 @@ export class Cart extends Component {
     rmFromCart(id){
         console.log('delete')
         console.log(id)
+        this.props.rmFromCart(id)
     }
 
     render() {
@@ -41,29 +43,32 @@ export class Cart extends Component {
         }
 
         var priceTotal = this.props.cart.reduce(function(prev, cur) {
-            return prev + cur.price;
+            return prev + cur.price * cur.quantity;
         }, 0);
 
         return (
             <>
                 <MainLayout {...this.props}>
-                   <Table striped bordered hover>
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>Name</th>
-                          <th>Size</th>
-                          <th>Color</th>
-                          <th>Price</th>
-                          <th> </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {this.renderCartProducts()}
-                      </tbody>
-                    </Table>
-                    <div>Total amount: {priceTotal}</div>
-                    <div><Button variant="warning">Pay</Button></div>
+                   <div className="cart-main">
+                       <Table striped bordered hover>
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Name</th>
+                              <th>Size</th>
+                              <th>Color</th>
+                              <th>Price</th>
+                              <th>Quantity</th>
+                              <th> </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {this.renderCartProducts()}
+                          </tbody>
+                        </Table>
+                        <div>Total price: {priceTotal}</div>
+                        <div><Button variant="warning">Pay</Button></div>
+                    </div>
                 </MainLayout>
             </>
         );
@@ -79,7 +84,7 @@ const mapStateToProps = state => ({
 function mapDispatchToProps(dispatch) {
     return {
 //        getProduct: (id) => dispatch(getProduct(id)),
-//        addToCart: (product) => dispatch(addToCart(product)),
+        rmFromCart: (product) => dispatch(rmFromCart(product)),
   };
 }
 

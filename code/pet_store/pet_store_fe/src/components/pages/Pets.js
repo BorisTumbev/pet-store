@@ -39,8 +39,10 @@ export class Pets extends Component {
         return (
             <>
                 <MainLayout {...this.props}>
-                    <div className='pet-cards'>
-                        {this.renderPets()}
+                    <div className="pets-main">
+                        <div className='pet-cards'>
+                            {this.renderPets()}
+                        </div>
                     </div>
                 </MainLayout>
             </>

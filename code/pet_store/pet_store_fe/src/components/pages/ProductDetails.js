@@ -9,7 +9,8 @@ import {
     Card,
     ListGroup,
     ListGroupItem,
-    Button
+    Button,
+    Form
 } from 'react-bootstrap';
 
 export class ProductDetails extends Component {
@@ -20,9 +21,15 @@ export class ProductDetails extends Component {
         this.props.getProduct(id);
     }
 
-    addToCart = () =>{
-        console.log(this.props.product)
-        this.props.addToCart(this.props.product)
+    addToCart = (e) =>{
+        e.preventDefault();
+        let form = e.target
+        console.log(form.elements.quantity.value)
+        let product = this.props.product
+        product['quantity'] = form.elements.quantity.value
+        console.log(product)
+
+        this.props.addToCart(product)
     }
 
     render() {
@@ -51,7 +58,13 @@ export class ProductDetails extends Component {
                       </ListGroup>
                       {this.props.isAuthenticated &&
                           <Card.Body>
-                            <Button onClick={this.addToCart} variant="warning">add to cart</Button>
+                            <Form onSubmit={this.addToCart}>
+                              <Form.Group controlId="quantity">
+                                <Form.Label>Quantity</Form.Label>
+                                <Form.Control type="number" min="1" required/>
+                              </Form.Group>
+                              <Button type='submit' variant="warning">add to cart</Button>
+                            </Form>
                           </Card.Body>
                       }
                     </Card>

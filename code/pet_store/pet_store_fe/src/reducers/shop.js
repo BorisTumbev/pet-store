@@ -1,5 +1,5 @@
 import {
-GET_PRODUCTS, GET_PRODUCT, ADD_TO_CART
+GET_PRODUCTS, GET_PRODUCT, ADD_TO_CART, RM_FROM_CART
 } from "../actions/types";
 
 import {updateObject} from "../utils";
@@ -24,8 +24,21 @@ const getProduct = (state, action) => {
 }
 
 const addToCart = (state, action) => {
+    if(!state.cart.some(e => e.id === action.payload.id)){
+        return updateObject(state, {
+            cart: [ ...state.cart, action.payload ],
+        });
+    }
+    else{
+        return updateObject(state, {
+            cart: [ ...state.cart ],
+        });
+    }
+}
+
+const rmFromCart = (state, action) => {
     return updateObject(state, {
-        cart: [ ...state.cart, action.payload ],
+        cart: [ ...state.cart ].filter((x, index) => x.id !== action.payload),
     });
 }
 
@@ -34,6 +47,7 @@ const reducer = (state=initialState, action) => {
         case GET_PRODUCTS: return getProducts(state, action);
         case GET_PRODUCT: return getProduct(state, action);
         case ADD_TO_CART: return addToCart(state, action);
+        case RM_FROM_CART: return rmFromCart(state, action);
         default:
             return state;
     }
