@@ -32,6 +32,10 @@ class ProductList(generics.ListCreateAPIView):
     def get_queryset(self):
         cat = self.request.GET.get('c', None)
         animal = self.request.GET.get('a', None)
+        if cat == 'all':
+            cat = None
+        if animal == 'all':
+            animal = None
 
         params = {'category': cat, 'animal': animal}
         filters = {k: v for k, v in params.items() if v is not None}

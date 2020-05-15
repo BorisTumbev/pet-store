@@ -57,6 +57,7 @@ export class Shop extends Component {
                           <Form.Group controlId="animal">
                             <Form.Label>Animal</Form.Label>
                             <Form.Control as="select" custom>
+                              <option value='all'>All</option>
                               <option value='cat'>Cat</option>
                               <option value='dog'>Dog</option>
                             </Form.Control>
@@ -64,6 +65,7 @@ export class Shop extends Component {
                            <Form.Group controlId="category">
                             <Form.Label>Category</Form.Label>
                             <Form.Control as="select" custom>
+                              <option value='all'>All</option>
                               <option value='cl'>Clothing</option>
                               <option value='acc'>Accessories</option>
                             </Form.Control>
@@ -78,7 +80,6 @@ export class Shop extends Component {
                 </MainLayout>
             </>
         );
-
     }
 }
 

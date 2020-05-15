@@ -18,7 +18,7 @@ export class Pets extends Component {
     renderPets(){
         return this.props.pets.map(function (e, index){
             return(
-                  <Card key={index} className='pet-card'>
+                  <Card key={index} className='pet-gallery-card'>
                     <Card.Img variant="top" src={e.picture_url} />
                     <Card.Body>
                       <Card.Title>{e.breed}</Card.Title>

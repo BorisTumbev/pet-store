@@ -16,6 +16,12 @@
     height: 115px;
 }
 
+.pet-gallery-card{
+    margin-bottom: 20px;
+    background-color: #877245;
+    text-align: center;
+}
+
 .pet-cards{
     width: 850px;
     display: flex;
