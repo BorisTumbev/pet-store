@@ -24,7 +24,7 @@ export class Contacts extends Component {
                 <MainLayout {...this.props}>
                     <div className="contacts-main">
                         <div className="contacts-text">
-                            <span>Address: село Трън, ул Васил Левски</span>
+                            <span>Address: гр. Кърджали, жк. Възрожденци, бул. Христо Ботев 67</span>
                             <span>Telephone: +3598888888888</span>
                             <Form className="contacts-form">
                               <Form.Group controlId="exampleForm.ControlInput1">
