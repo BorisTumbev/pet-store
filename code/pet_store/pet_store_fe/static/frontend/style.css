@@ -133,6 +133,7 @@ html, body, #app, .main, .home, .contacts-main {
 .contacts-text{
     font-family: Comic Sans MS;
     text-align: center;
+    padding-top: 2%;
 }
 
 .contacts-text > span{
