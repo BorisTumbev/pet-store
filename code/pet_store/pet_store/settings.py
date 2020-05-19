@@ -26,7 +26,7 @@ SECRET_KEY = '8st7k4mk&501d!-1(ka06!$3lx(y9n)zku#@3s)_27z#5@hz$7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pet-store.touchpython.com']
 
 
 # Application definition
