@@ -104,6 +104,7 @@ html, body, #app, .main, .home, .contacts-main {
 
 .home{
     background-image: url('/static/images/background2.jpg');
+    display: flex;
 }
 
 .home-text{
@@ -112,8 +113,9 @@ html, body, #app, .main, .home, .contacts-main {
     font-weight: 400;
     line-height: 1.5;
     text-align: center;
-    width: 1000px;
+    width: 50%;
     margin: 0 auto;
+    padding-top: 2%;
 }
 
 .shop-main, .pets-main{
@@ -131,6 +133,7 @@ html, body, #app, .main, .home, .contacts-main {
 .contacts-text{
     font-family: Comic Sans MS;
     text-align: center;
+    padding-top: 2%;
 }
 
 .contacts-text > span{
@@ -147,4 +150,20 @@ html, body, #app, .main, .home, .contacts-main {
     width: 50%;
     margin: 0 auto;
     padding-top: 50px;
+}
+
+.home-left-img{
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    left: 3%;
+    top: 25%;
+}
+
+.home-right-img{
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    right: 3%;
+    top: 25%;
 }
